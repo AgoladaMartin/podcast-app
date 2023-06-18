@@ -3,7 +3,7 @@
   flex-direction: column;
   gap: 4rem;
 }
-.busqueda {
+.search {
   display: flex;
   align-items: center;
   justify-content: end;
@@ -21,7 +21,7 @@
   width: 20rem;
   height: 20rem;
 }
-#numero > h1 {
+#number > h1 {
   background-color: rgba(0, 68, 255, 0.938);
   color: white;
   border-radius: 20%;

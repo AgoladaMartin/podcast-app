@@ -6,35 +6,48 @@ import { Filter } from './Filter';
 import { useLoadPodcasts } from '../../hooks/useLoadPodcasts';
 
 import './podcastsContainer.css';
+import { useState } from 'react';
+import { Link } from 'react-router-dom';
+import { linkStyle } from '../../utils/linksCss';
 
 export const PodcastsContainer = () => {
   const [podcastsList] = useLoadPodcasts();
+  const [filteredPodcast, setFilteredPodcast] = useState();
+  const list = filteredPodcast ? filteredPodcast : podcastsList;
 
   return (
     <div className='container'>
-      <div className='busqueda'>
-        <div id='numero'>
+      <div className='search'>
+        <div id='number'>
           <h1>{podcastsList.length}</h1>
         </div>
-        <Filter></Filter>
+        <Filter
+          setFilteredPodcast={setFilteredPodcast}
+          podcastsList={podcastsList}
+        ></Filter>
       </div>
 
       <div className='podcastsList'>
-        {podcastsList.map((podcast) => (
+        {list.map((podcast) => (
           <Card sx={{ maxWidth: 345 }} className='card'>
-            <CardMedia
-              sx={{ height: 140 }}
-              image={podcast.img}
-              title={podcast.name}
-            />
-            <CardContent>
-              <Typography gutterBottom variant='h5' component='div'>
-                {podcast.name}
-              </Typography>
-              <Typography variant='body2' color='text.secondary'>
-                {podcast.author}
-              </Typography>
-            </CardContent>
+            <Link
+              to={`http://localhost:3000/podcast/${podcast.id}`}
+              style={linkStyle}
+            >
+              <CardMedia
+                sx={{ height: 140 }}
+                image={podcast.img}
+                title={podcast.name}
+              />
+              <CardContent>
+                <Typography gutterBottom variant='h5' component='div'>
+                  {podcast.name}
+                </Typography>
+                <Typography variant='body2' color='text.secondary'>
+                  {podcast.author}
+                </Typography>
+              </CardContent>
+            </Link>
           </Card>
         ))}
       </div>
