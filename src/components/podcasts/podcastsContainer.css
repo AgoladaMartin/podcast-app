@@ -1,0 +1,29 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;
+}
+.busqueda {
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  gap: 4rem;
+  margin-right: 6rem;
+}
+.podcastsList {
+  display: flex;
+  align-items: center;
+  justify-items: center;
+  flex-wrap: wrap;
+  gap: 3rem;
+}
+.card {
+  width: 20rem;
+  height: 20rem;
+}
+#numero > h1 {
+  background-color: rgba(0, 68, 255, 0.938);
+  color: white;
+  border-radius: 20%;
+  padding: 0.5rem;
+}

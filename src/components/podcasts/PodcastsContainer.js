@@ -1,62 +1,44 @@
-import * as React from 'react';
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
-import TableHead from '@mui/material/TableHead';
-import TableRow from '@mui/material/TableRow';
-import Paper from '@mui/material/Paper';
-
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
+import CardMedia from '@mui/material/CardMedia';
+import Typography from '@mui/material/Typography';
+import { Filter } from './Filter';
 import { useLoadPodcasts } from '../../hooks/useLoadPodcasts';
 
-function createData(name, id, img, author, summary) {
-  return { name, id, img, author, summary };
-}
+import './podcastsContainer.css';
 
 export const PodcastsContainer = () => {
   const [podcastsList] = useLoadPodcasts();
-  const rows = podcastsList.map((podcast) =>
-    createData(
-      podcast.name,
-      podcast.id,
-      podcast.img,
-      podcast.author,
-      podcast.summary
-    )
-  );
 
   return (
-    <TableContainer component={Paper}>
-      <Table sx={{ minWidth: 650 }} aria-label='simple table'>
-        <TableHead>
-          <TableRow>
-            <TableCell>Nombre</TableCell>
-            <TableCell align='right'>id</TableCell>
-            <TableCell align='right'>img</TableCell>
-            <TableCell align='right'>author</TableCell>
-            <TableCell align='right'>summary</TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {rows.map((row) => (
-            <TableRow
-              key={row.name}
-              sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-            >
-              <TableCell component='th' scope='row'>
-                {row.name}
-              </TableCell>
-              <TableCell align='right'>{row.id}</TableCell>
-              <TableCell align='right'>
-                <img src={row.img} alt='imagen podcast'></img>
-              </TableCell>
-              <TableCell align='right'>{row.author}</TableCell>
-              <TableCell align='right'>{row.summary}</TableCell>
-            </TableRow>
-          ))}
-        </TableBody>
-      </Table>
-    </TableContainer>
+    <div className='container'>
+      <div className='busqueda'>
+        <div id='numero'>
+          <h1>{podcastsList.length}</h1>
+        </div>
+        <Filter></Filter>
+      </div>
+
+      <div className='podcastsList'>
+        {podcastsList.map((podcast) => (
+          <Card sx={{ maxWidth: 345 }} className='card'>
+            <CardMedia
+              sx={{ height: 140 }}
+              image={podcast.img}
+              title={podcast.name}
+            />
+            <CardContent>
+              <Typography gutterBottom variant='h5' component='div'>
+                {podcast.name}
+              </Typography>
+              <Typography variant='body2' color='text.secondary'>
+                {podcast.author}
+              </Typography>
+            </CardContent>
+          </Card>
+        ))}
+      </div>
+    </div>
   );
 };
 
