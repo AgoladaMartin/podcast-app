@@ -1,18 +1,20 @@
 import { useState, useEffect } from 'react';
+const CORS_PROXY = 'https://cors.io/?';
 
 export function useLoadPodcastProfile(id) {
-  const [businessProfileInfo, setBusinessProfileInfo] = useState('');
+  const [podcastProfile, setPodcastProfile] = useState('');
   const loadBusinessProfile = async () => {
     try {
       const res = await fetch(
-        `https://itunes.apple.com/lookup?id=1535809341${id}`,
+        `https://api.allorigins.win/raw?url=https://itunes.apple.com/lookup?id=${id}&entity=podcastEpisode`,
         {
           method: 'GET',
         }
       );
       const body = await res.json();
 
-      setBusinessProfileInfo(body.data);
+      setPodcastProfile(body.results[0]);
+      console.log('hoooook', podcastProfile);
     } catch (e) {
       console.error('Err:', e);
     }
@@ -20,5 +22,5 @@ export function useLoadPodcastProfile(id) {
   useEffect(() => {
     loadBusinessProfile();
   }, []);
-  return [businessProfileInfo, setBusinessProfileInfo];
+  return [podcastProfile, setPodcastProfile];
 }

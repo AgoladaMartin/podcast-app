@@ -19,7 +19,7 @@ export const PodcastsContainer = () => {
     <div className='container'>
       <div className='search'>
         <div id='number'>
-          <h1>{podcastsList.length}</h1>
+          <h1>{list.length}</h1>
         </div>
         <Filter
           setFilteredPodcast={setFilteredPodcast}
@@ -29,9 +29,10 @@ export const PodcastsContainer = () => {
 
       <div className='podcastsList'>
         {list.map((podcast) => (
-          <Card sx={{ maxWidth: 345 }} className='card'>
+          <Card sx={{ maxWidth: 345 }} className='card' key={podcast.id}>
             <Link
               to={`http://localhost:3000/podcast/${podcast.id}`}
+              state={podcast.summary}
               style={linkStyle}
             >
               <CardMedia
@@ -44,7 +45,7 @@ export const PodcastsContainer = () => {
                   {podcast.name}
                 </Typography>
                 <Typography variant='body2' color='text.secondary'>
-                  {podcast.author}
+                  Author: {podcast.author}
                 </Typography>
               </CardContent>
             </Link>
