@@ -35,7 +35,9 @@ export function useLoadPodcastEpisodes(id) {
           title: episode.trackName,
           //moment formatea la fecha a dia, mes y año
           date: moment(episode.releaseDate).utc().format('DD-MM-YYYY'),
-          duration: secondsToTime(episode.trackTimeMillis),
+          duration: episode.trackTimeMillis
+            ? secondsToTime(episode.trackTimeMillis)
+            : 'Unknown',
           url: episode.episodeUrl,
           description: episode.description,
         });

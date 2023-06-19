@@ -16,10 +16,13 @@ export const EpisodeDetail = (props) => {
   //Accedemos a la variable description a través de la propiedad state del objeto location
   const description = location.state.description;
 
+  //Variable para renderizar el componente PodcastsId con los links
+  const links = true;
+
   return (
     <div id='episode'>
       <div id='cardEpisode'>
-        <PodcastsId></PodcastsId>
+        <PodcastsId links={links}></PodcastsId>
       </div>
       <div id='audio'>
         <div id='description'>
