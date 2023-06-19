@@ -1,8 +1,9 @@
 import { Link } from 'react-router-dom';
+
 import { headerStyle } from '../../utils/linksCss';
 import './header.css';
 
-export const Header = () => {
+export const Header = (props) => {
   return (
     <>
       <Link to={'/'} style={headerStyle}>

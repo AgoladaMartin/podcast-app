@@ -10,9 +10,11 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { linkStyle } from '../../utils/linksCss';
 
-export const PodcastsContainer = () => {
+export const PodcastsContainer = (props) => {
   const [podcastsList] = useLoadPodcasts();
   const [filteredPodcast, setFilteredPodcast] = useState();
+
+  //Creamos una variable que devuelve el listado fitrado o sin filtrar
   const list = filteredPodcast ? filteredPodcast : podcastsList;
 
   return (

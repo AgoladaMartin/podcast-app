@@ -1,4 +1,6 @@
 import { useState, useEffect } from 'react';
+
+//Función que llama al api para cargar el listado de 100 podcasts
 export function useLoadPodcasts() {
   const [podcastsList, setPodcastsList] = useState([]);
   const loadPodcasts = async () => {
@@ -22,7 +24,6 @@ export function useLoadPodcasts() {
         };
         podcasts.push(podcast);
       });
-      console.log('podcast', podcasts);
       setPodcastsList(podcasts);
     } catch (e) {
       console.error('Err:', e);

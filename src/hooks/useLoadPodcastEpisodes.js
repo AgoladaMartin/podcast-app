@@ -1,21 +1,23 @@
 import { useState, useEffect } from 'react';
+import moment from 'moment';
 
+//Función que llama al api para cargar el listado de episodios de un podcast concreto a través de su id
 export function useLoadPodcastEpisodes(id) {
   const [podcastEpisodes, setPodcastEpisodes] = useState('');
-  const agregarCeroSiEsNecesario = (valor) => {
-    if (valor < 10) {
-      return '0' + valor;
-    } else {
-      return '' + valor;
+  var secondsToTime = function (s) {
+    //Función para transformar los milisegundos a horas, minutos y segundos
+    function addZ(n) {
+      return (n < 10 ? '0' : '') + n;
     }
-  };
-  const milisegundosAMinutosYSegundos = (milisegundos) => {
-    const minutos = parseInt(milisegundos / 1000 / 60);
-    milisegundos -= minutos * 60 * 1000;
-    const segundos = milisegundos / 1000;
-    return `${agregarCeroSiEsNecesario(minutos)}:${agregarCeroSiEsNecesario(
-      segundos.toFixed(1)
-    )}`;
+
+    var ms = s % 1000;
+    s = (s - ms) / 1000;
+    var secs = s % 60;
+    s = (s - secs) / 60;
+    var mins = s % 60;
+    var hrs = (s - mins) / 60;
+
+    return addZ(hrs) + ':' + addZ(mins) + ':' + addZ(secs);
   };
   const loadPodcastEpisodes = async () => {
     try {
@@ -31,8 +33,9 @@ export function useLoadPodcastEpisodes(id) {
         episodes.push({
           id: episode.trackId,
           title: episode.trackName,
-          date: episode.releaseDate,
-          duration: milisegundosAMinutosYSegundos(episode.trackTimeMillis),
+          //moment formatea la fecha a dia, mes y año
+          date: moment(episode.releaseDate).utc().format('DD-MM-YYYY'),
+          duration: secondsToTime(episode.trackTimeMillis),
         });
       });
 

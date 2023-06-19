@@ -4,20 +4,22 @@ import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { useLocation, useParams } from 'react-router-dom';
 import { useLoadPodcastProfile } from '../../hooks/useLoadPodcastProfile';
-import { PodcastEpisode, PodcastEpisodes } from './PodcastEpisodes';
-import { useLoadPodcastEpisodes } from '../../hooks/useLoadPodcastEpisodes';
 
-export const PodcastsId = () => {
+export const PodcastsId = (props) => {
+  //Recibimos el Id del podcast de los params
   const { id } = useParams();
 
+  //Le enviamos el Id a la función encargada de la llamada al api
   const [podcastProfile] = useLoadPodcastProfile(id);
-  const [podcastEpisodes] = useLoadPodcastEpisodes(id);
-  console.log('podcastEpisodes en id', podcastEpisodes);
 
+  //Recibimos la descripción del podcast a través del componente Link mediante el objeto location
   const location = useLocation();
 
+  //Accedemos a la variable descrition a través de la propiedad state del objeto location
+  const description = location.state;
+
   return (
-    <div>
+    <div id='podcastId'>
       <Card sx={{ maxWidth: 345 }} className='cardProfile'>
         <CardMedia
           sx={{ height: 140 }}
@@ -34,7 +36,7 @@ export const PodcastsId = () => {
           <hr></hr>
           <Typography variant='body2' color='text.secondary'>
             <h4>Description:</h4>
-            {location.state}
+            {description}
           </Typography>
         </CardContent>
       </Card>

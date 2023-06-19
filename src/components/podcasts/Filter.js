@@ -4,11 +4,12 @@ import TextField from '@mui/material/TextField';
 export const Filter = (props) => {
   const { setFilteredPodcast, podcastsList } = props;
 
+  //Función que filtra al momento y en cliente el listado de podcasts.
   const filterPodcasts = (e) => {
     const filteredPodcasts = podcastsList.filter(
       (podcast) =>
-        podcast.name.includes(e.target.value) ||
-        podcast.author.includes(e.target.value)
+        podcast.name.toLowerCase().includes(e.target.value.toLowerCase()) ||
+        podcast.author.toLowerCase().includes(e.target.value.toLowerCase())
     );
 
     setFilteredPodcast(filteredPodcasts);

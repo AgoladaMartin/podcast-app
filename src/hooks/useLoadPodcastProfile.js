@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 
+//Función que llama al api para cargar el perfil de un podcast concreto a través de su id
 export function useLoadPodcastProfile(id) {
   const [podcastProfile, setPodcastProfile] = useState('');
   const loadPodcastProfile = async () => {

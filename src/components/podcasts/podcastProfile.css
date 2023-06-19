@@ -1,0 +1,12 @@
+#podcastProfile {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 2rem;
+}
+
+#episodeTable > p {
+  font-weight: bold;
+  font-size: 1.25rem;
+  border: 1px solid rgb(217, 221, 224);
+  padding: 0.5rem;
+}
