@@ -1,14 +1,14 @@
 import * as React from 'react';
-import Paper from '@mui/material/Paper';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
-import TablePagination from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
-import { useParams } from 'react-router-dom';
+import Paper from '@mui/material/Paper';
+import { Link, useParams } from 'react-router-dom';
 import { useLoadPodcastEpisodes } from '../../hooks/useLoadPodcastEpisodes';
+import { linkStyle } from '../../utils/linksCss';
 
 export const PodcastEpisodes = (props) => {
   //Recibimos el Id del podcast de los params
@@ -27,84 +27,74 @@ export const PodcastEpisodes = (props) => {
       minWidth: 100,
     },
   ];
-  function createData(title, date, duration) {
-    return { title, date, duration };
+  function createData(title, date, duration, id, url, description) {
+    return { title, date, duration, id, url, description };
   }
   const rows = podcastEpisodes
     ? podcastEpisodes?.map((podcast) =>
-        createData(podcast.title, podcast.date, podcast.duration)
+        createData(
+          podcast.title,
+          podcast.date,
+          podcast.duration,
+          podcast.id,
+          podcast.url,
+          podcast.description
+        )
       )
     : '';
-  const [page, setPage] = React.useState(0);
-  const [rowsPerPage, setRowsPerPage] = React.useState(10);
-
-  const handleChangePage = (event, newPage) => {
-    setPage(newPage);
-  };
-
-  const handleChangeRowsPerPage = (event) => {
-    setRowsPerPage(+event.target.value);
-    setPage(0);
-  };
 
   //Creamos una variable que define lo que se va a renderizar con un ternario,
   //si existe el listado de podcast se muestra, y si no, no se renderiza nada.
   const render = podcastEpisodes ? (
     <div id='episodeTable'>
       <p>Episodes: {podcastEpisodes.length}</p>
-      <Paper sx={{ width: '100%', overflow: 'hidden' }}>
-        <TableContainer sx={{ maxHeight: 440 }}>
-          <Table stickyHeader aria-label='sticky table'>
-            <TableHead>
-              <TableRow>
-                {columns.map((column) => (
-                  <TableCell
-                    key={column.id}
-                    align={column.align}
-                    style={{ minWidth: column.minWidth }}
+      <TableContainer component={Paper}>
+        <Table sx={{ minWidth: 650 }} aria-label='simple table'>
+          <TableHead>
+            <TableRow>
+              <TableCell>Title</TableCell>
+              <TableCell align='center'>Date</TableCell>
+              <TableCell align='center'>Duration</TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {rows.map((row) => (
+              <TableRow
+                key={row.name}
+                sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+              >
+                <TableCell component='th' scope='row'>
+                  <Link
+                    to={`http://localhost:3000/podcast/${id}/episode/${row.id}`}
+                    state={row}
+                    style={linkStyle}
                   >
-                    {column.label}
-                  </TableCell>
-                ))}
+                    {row.title}
+                  </Link>
+                </TableCell>
+                <TableCell align='right'>
+                  <Link
+                    to={`http://localhost:3000/podcast/${id}/episode/${row.id}`}
+                    state={row}
+                    style={linkStyle}
+                  >
+                    {row.date}
+                  </Link>
+                </TableCell>
+                <TableCell align='right'>
+                  <Link
+                    to={`http://localhost:3000/podcast/${id}/episode/${row.id}`}
+                    state={row}
+                    style={linkStyle}
+                  >
+                    {row.duration}
+                  </Link>
+                </TableCell>
               </TableRow>
-            </TableHead>
-            <TableBody>
-              {rows
-                .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                .map((row) => {
-                  return (
-                    <TableRow
-                      hover
-                      role='checkbox'
-                      tabIndex={-1}
-                      key={row.code}
-                    >
-                      {columns.map((column) => {
-                        const value = row[column.id];
-                        return (
-                          <TableCell key={column.id} align={column.align}>
-                            {column.format && typeof value === 'number'
-                              ? column.format(value)
-                              : value}
-                          </TableCell>
-                        );
-                      })}
-                    </TableRow>
-                  );
-                })}
-            </TableBody>
-          </Table>
-        </TableContainer>
-        <TablePagination
-          rowsPerPageOptions={[10, 25, 100]}
-          component='div'
-          count={rows.length}
-          rowsPerPage={rowsPerPage}
-          page={page}
-          onPageChange={handleChangePage}
-          onRowsPerPageChange={handleChangeRowsPerPage}
-        />
-      </Paper>
+            ))}
+          </TableBody>
+        </Table>
+      </TableContainer>
     </div>
   ) : (
     'cargando'

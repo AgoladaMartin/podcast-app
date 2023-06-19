@@ -1,0 +1,10 @@
+#episode {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin-top: 3rem;
+}
+#description {
+  max-width: 30vw;
+  line-height: 200%;
+}
