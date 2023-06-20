@@ -1,24 +1,13 @@
 import { useState, useEffect } from 'react';
+//Importamos moment para formatear la fecha a dia, mes y año
 import moment from 'moment';
+//Importamos función para formatear la duración
+import { secondsToTime } from '../utils/durationFormat';
 
 //Función que llama al api para cargar el listado de episodios de un podcast concreto a través de su id
 export function useLoadPodcastEpisodes(id) {
   const [podcastEpisodes, setPodcastEpisodes] = useState('');
-  var secondsToTime = function (s) {
-    //Función para transformar los milisegundos a horas, minutos y segundos
-    function addZ(n) {
-      return (n < 10 ? '0' : '') + n;
-    }
 
-    var ms = s % 1000;
-    s = (s - ms) / 1000;
-    var secs = s % 60;
-    s = (s - secs) / 60;
-    var mins = s % 60;
-    var hrs = (s - mins) / 60;
-
-    return addZ(hrs) + ':' + addZ(mins) + ':' + addZ(secs);
-  };
   const loadPodcastEpisodes = async () => {
     try {
       const res = await fetch(
@@ -33,7 +22,6 @@ export function useLoadPodcastEpisodes(id) {
         episodes.push({
           id: episode.trackId,
           title: episode.trackName,
-          //moment formatea la fecha a dia, mes y año
           date: moment(episode.releaseDate).utc().format('DD-MM-YYYY'),
           duration: episode.trackTimeMillis
             ? secondsToTime(episode.trackTimeMillis)
@@ -42,15 +30,12 @@ export function useLoadPodcastEpisodes(id) {
           description: episode.description,
         });
       });
-
       setPodcastEpisodes(episodes);
-      console.log('raw', body);
-
-      console.log('episodes', episodes);
     } catch (e) {
       console.error('Err:', e);
     }
   };
+
   useEffect(() => {
     loadPodcastEpisodes();
   }, []);
