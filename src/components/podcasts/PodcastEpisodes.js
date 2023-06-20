@@ -9,6 +9,7 @@ import Paper from '@mui/material/Paper';
 import { Link, useParams } from 'react-router-dom';
 import { useLoadPodcastEpisodes } from '../../hooks/useLoadPodcastEpisodes';
 import { linkStyle } from '../../utils/linksCss';
+import './podcastEpisodes.css';
 
 export const PodcastEpisodes = (props) => {
   //Recibimos el Id del podcast de los params

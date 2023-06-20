@@ -28,6 +28,7 @@ export const PodcastsId = (props) => {
         sx={{ height: 140 }}
         image={podcastProfile.artworkUrl600}
         title={podcastProfile.collectionName}
+        id='cardMedia'
       />
       <CardContent>
         <Typography gutterBottom variant='h5' component='div'>

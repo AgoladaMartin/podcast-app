@@ -6,12 +6,12 @@
 #cardEpisode {
   display: flex;
   flex-direction: column;
-  gap: 2rem;
+  gap: 1.5rem;
 }
 
 #description {
   max-width: 30vw;
   line-height: 200%;
-  height: 40vh;
+  max-height: 40vh;
   overflow: auto;
 }

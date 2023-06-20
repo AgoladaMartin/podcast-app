@@ -1,0 +1,5 @@
+#episodeTable {
+  height: 75vh;
+  overflow: auto;
+  width: 65vw;
+}
