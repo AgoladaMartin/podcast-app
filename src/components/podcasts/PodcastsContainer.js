@@ -6,17 +6,27 @@ import { Filter } from './Filter';
 import { useLoadPodcasts } from '../../hooks/useLoadPodcasts';
 
 import './podcastsContainer.css';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { linkStyle } from '../../utils/linksCss';
+import { useStore } from '../../store/store';
 
 export const PodcastsContainer = (props) => {
   const [podcastsList] = useLoadPodcasts();
   const [filteredPodcast, setFilteredPodcast] = useState();
 
+  //Importamos las funciones para setear el loading
+  const isLoading = useStore((state) => state.isLoading);
+  const noLoading = useStore((state) => state.noLoading);
+  //Ponemos en true el loading al cargar el componente
+  useEffect(() => {
+    isLoading();
+  }, []);
+
   //Creamos una variable que devuelve el listado fitrado o sin filtrar
   const list = filteredPodcast ? filteredPodcast : podcastsList;
-
+  //Ponemos en false el loading cuando termina de cargar
+  noLoading();
   return (
     <div className='container'>
       <div className='search'>

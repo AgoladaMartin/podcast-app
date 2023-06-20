@@ -2,3 +2,18 @@ h1 {
   color: rgba(0, 68, 255, 0.938);
   font-size: 2.5rem;
 }
+
+.header {
+  display: flex;
+  justify-content: space-between;
+}
+#spinner {
+  display: flex;
+  justify-self: flex-end;
+  align-self: center;
+  border-radius: 50%;
+  border-color: rgba(0, 68, 255, 0.938);
+  width: 2rem;
+  height: 2rem;
+  background-color: rgba(0, 68, 255, 0.519);
+}
