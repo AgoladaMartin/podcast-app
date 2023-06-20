@@ -46,13 +46,14 @@ npm run build
 
 Esta orden construye la aplicación minificada optimizada para un mejor rendimiento y la coloca en el directorio `build`, que queda listo para ser desplegado en producción.
 
-Se puede servir con un servidor estático, por ejemplo con `serve` (más información aqui https://www.npmjs.com/package/serve)
+Se puede servir con un servidor estático, por ejemplo con `serve` (más información aqui https://www.npmjs.com/package/serve).
+Para crearlo hay que ejecutar el siguiente comando: (hay que ejecutar esta orden en modo administrador, si estamos en windows o con el comando SUDO en linux)
 
 ```
-npm install - g serve (hay que ejecutar esta orden en modo administrado, si estamos en windows o con el comando SUDO en linux)
+npm install - g serve
 ```
 
-A continuación pasamos el directorio `build` creado anteriormente
+A continuación pasamos el directorio `build` creado anteriormente con la siguiente instrucción:
 
 ```
 serve -s build
