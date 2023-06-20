@@ -6,15 +6,8 @@ import { Link, useParams } from 'react-router-dom';
 import { useLoadPodcastProfile } from '../../hooks/useLoadPodcastProfile';
 import { useLoadPodcasts } from '../../hooks/useLoadPodcasts';
 import { linkStyle } from '../../utils/linksCss';
-import { useStore } from '../../store/store';
-import { useEffect } from 'react';
 
 export const PodcastsId = (props) => {
-  //Importamos las funciones para cuando está cargando el componente
-  const isLoading = useStore((state) => state.isLoading);
-  const noLoading = useStore((state) => state.noLoading);
-  //Ponemos en true el loading al cargar el componente
-
   //Recibimos el Id del podcast de los params
   const { id } = useParams();
 
@@ -51,8 +44,6 @@ export const PodcastsId = (props) => {
       </CardContent>
     </>
   );
-  //Ponemos en false el loading cuando termina de cargar
-
   return (
     <div id='podcastId'>
       <Card sx={{ maxWidth: 345 }} className='cardProfile'>

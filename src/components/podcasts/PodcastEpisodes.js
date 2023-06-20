@@ -9,15 +9,8 @@ import Paper from '@mui/material/Paper';
 import { Link, useParams } from 'react-router-dom';
 import { useLoadPodcastEpisodes } from '../../hooks/useLoadPodcastEpisodes';
 import { linkStyle } from '../../utils/linksCss';
-import { useStore } from '../../store/store';
-import { useEffect } from 'react';
 
 export const PodcastEpisodes = (props) => {
-  //Importamos las funciones para cuando está cargando el componente
-  const isLoading = useStore((state) => state.isLoading);
-  const noLoading = useStore((state) => state.noLoading);
-  //Ponemos en true el loading al cargar el componente
-
   //Recibimos el Id del podcast de los params
   const { id } = useParams();
 
@@ -97,7 +90,5 @@ export const PodcastEpisodes = (props) => {
   ) : (
     ''
   );
-  //Ponemos en false el loading cuando termina de cargar
-
   return render;
 };

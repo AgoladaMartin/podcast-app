@@ -4,12 +4,11 @@ import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { Filter } from './Filter';
 import { useLoadPodcasts } from '../../hooks/useLoadPodcasts';
-
-import './podcastsContainer.css';
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { linkStyle } from '../../utils/linksCss';
 import { useStore } from '../../store/store';
+import './podcastsContainer.css';
 
 export const PodcastsContainer = (props) => {
   const [podcastsList] = useLoadPodcasts();

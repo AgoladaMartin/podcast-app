@@ -1,10 +1,17 @@
 #episode {
   display: flex;
   justify-content: space-around;
-  align-items: center;
   margin-top: 3rem;
 }
+#cardEpisode {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
 #description {
   max-width: 30vw;
   line-height: 200%;
+  height: 40vh;
+  overflow: auto;
 }

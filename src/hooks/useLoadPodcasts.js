@@ -7,9 +7,11 @@ import { useStore } from '../store/store';
 //Función que llama al api para cargar el listado de 100 podcasts
 export function useLoadPodcasts() {
   const [podcastsList, setPodcastsList] = useState([]);
-  //Importamos las funciones para setear el loading
+
+  //Importamos las funciones para setear el loading a través del store
   const isLoading = useStore((state) => state.isLoading);
   const noLoading = useStore((state) => state.noLoading);
+
   //Creamos una constante con los datos de local storage
   const getlocalStorage = JSON.parse(
     localStorage.getItem('podcastsListStorage')

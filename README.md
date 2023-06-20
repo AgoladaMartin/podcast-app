@@ -1,70 +1,61 @@
-# Getting Started with Create React App
+# Aplicación para reproducir podcasts
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+En este repositorio se encuentra el código de una _Single Page Application (SPA)_ para escuchar el top 100 de podcasts musicales de itunes. Existen 2 modos de ejecutar la aplicación: modo _development_ y modo _production_.
 
-## Available Scripts
+## Instrucciones
 
-In the project directory, you can run:
+Para construir y ejecutar la aplicación hay que clonar el repositorio `podcast-app` e instalar sus dependencias. Para clonarlo hay que tener instalado Git, puede obtenerse en http://git-scm.com/. Para instalar las dependencias es necesario tener instalado un gestori de dependencias como `npm` que puede obtenerse en https://nodejs.org/es/download
 
-### `npm start`
+### Como clonar el repositorio
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Para clonar el repositorio se debe ejecutar la siguiente instrucción:
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+```
+git clone https://github.com/AgoladaMartin/podcast-app.git
+```
 
-### `npm test`
+### Como instalar las dependencias
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Para instalar las dependencias hay que situarse en la raiz del proyecto y ejecutar la siguiente instrucción:
 
-### `npm run build`
+```
+npm install
+```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Como ejecutar la aplicación
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Tenemos dos modos de ejecución de la aplicación, modo _development_ y modo _production_. En el modo _development_ los assets se sirven sin minimizar y en el modo _production_ se sirven concatenados y minimizados.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Modo _development_
 
-### `npm run eject`
+Para ejecutar la aplicación en modo desarrollo hay que situarse en la raiz del proyecto y ejecutar la siguiente instrucción:
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+```
+npm start
+```
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+La aplicación se visiulizará en tu navegador en la siguiente dirección http://localhost:3000. El modo _development_ recarga la página en el momento en que guardas los cambios realizados en el código.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+### Modo _production_
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+Para ejecutar la aplicación en modo producción hay que situarse en la raiz del proyecto y ejecutar la siguiente instrucción:
 
-## Learn More
+```
+npm run build
+```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Esta orden construye la aplicación minificada optimizada para un mejor rendimiento y la coloca en el directorio `build`, que queda listo para ser desplegado en producción.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Se puede servir con un servidor estático, por ejemplo con `serve` (más información aqui https://www.npmjs.com/package/serve)
 
-### Code Splitting
+```
+npm install - g serve (hay que ejecutar esta orden en modo administrado, si estamos en windows o con el comando SUDO en linux)
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+A continuación pasamos el directorio `build` creado anteriormente
 
-### Analyzing the Bundle Size
+```
+serve -s build
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+La aplicación en modo producción se visiulizará igualmente en tu navegador en la siguiente dirección http://localhost:3000.

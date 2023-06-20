@@ -7,7 +7,7 @@ import { useStore } from '../store/store';
 export function useLoadPodcastProfile(id) {
   const [podcastProfile, setPodcastProfile] = useState('');
 
-  //Importamos las funciones para setear el loading
+  //Importamos las funciones para setear el loading a través del store
   const isLoading = useStore((state) => state.isLoading);
   const noLoading = useStore((state) => state.noLoading);
   //Creamos una constante con los datos de local storage
