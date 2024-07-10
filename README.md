@@ -2,6 +2,9 @@
 
 En este repositorio se encuentra el código de una _Single Page Application (SPA)_ para escuchar el top 100 de podcasts musicales de itunes. Existen 2 modos de ejecutar la aplicación: modo _development_ y modo _production_.
 
+Puedes probar la aplicación en vercel a través de este Link:
+https://podcast-app-woad.vercel.app/
+
 ## Instrucciones
 
 Para construir y ejecutar la aplicación hay que clonar el repositorio `podcast-app` e instalar sus dependencias. Para clonarlo hay que tener instalado Git, puede obtenerse en http://git-scm.com/. Para instalar las dependencias es necesario tener instalado un gestori de dependencias como `npm` que puede obtenerse en https://nodejs.org/es/download
