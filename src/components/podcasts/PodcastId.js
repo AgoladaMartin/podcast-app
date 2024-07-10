@@ -49,7 +49,7 @@ export const PodcastsId = (props) => {
     <div id='podcastId'>
       <Card sx={{ maxWidth: 345 }} className='cardProfile'>
         {links ? (
-          <Link style={linkStyle} to={`http://localhost:3000/podcast/${id}`}>
+          <Link style={linkStyle} to={`/podcast/${id}`}>
             {' '}
             {card}
           </Link>

@@ -57,7 +57,7 @@ export const PodcastEpisodes = (props) => {
               >
                 <TableCell component='th' scope='row'>
                   <Link
-                    to={`http://localhost:3000/podcast/${id}/episode/${row.id}`}
+                    to={`/podcast/${id}/episode/${row.id}`}
                     state={row}
                     style={linkStyle}
                   >
@@ -66,7 +66,7 @@ export const PodcastEpisodes = (props) => {
                 </TableCell>
                 <TableCell align='right'>
                   <Link
-                    to={`http://localhost:3000/podcast/${id}/episode/${row.id}`}
+                    to={`/podcast/${id}/episode/${row.id}`}
                     state={row}
                     style={linkStyle}
                   >
@@ -75,7 +75,7 @@ export const PodcastEpisodes = (props) => {
                 </TableCell>
                 <TableCell align='right'>
                   <Link
-                    to={`http://localhost:3000/podcast/${id}/episode/${row.id}`}
+                    to={`/podcast/${id}/episode/${row.id}`}
                     state={row}
                     style={linkStyle}
                   >

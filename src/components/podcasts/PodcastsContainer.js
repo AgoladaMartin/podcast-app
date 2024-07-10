@@ -42,7 +42,7 @@ export const PodcastsContainer = (props) => {
         {list.map((podcast) => (
           <Card sx={{ maxWidth: 345 }} className='card' key={podcast.id}>
             <Link
-              to={`http://localhost:3000/podcast/${podcast.id}`}
+              to={`/podcast/${podcast.id}`}
               state={podcast.summary}
               style={linkStyle}
             >
