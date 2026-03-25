@@ -16,7 +16,7 @@ export function useLoadPodcastEpisodes(id) {
     isLoading();
     try {
       const res = await fetch(
-        `https://corsproxy.io/?https://itunes.apple.com/lookup?id=${id}&entity=podcastEpisode`,
+        `https://itunes.apple.com/lookup?id=${id}&entity=podcastEpisode`,
         {
           method: 'GET',
         }
