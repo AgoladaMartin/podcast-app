@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 //Importamos función para saber si local storage lleva más de un dia
 import { storageOutDated } from '../utils/storageOutDated';
 import { useStore } from '../store/store';
@@ -10,12 +10,13 @@ export function useLoadPodcastProfile(id) {
   //Importamos las funciones para setear el loading a través del store
   const isLoading = useStore((state) => state.isLoading);
   const noLoading = useStore((state) => state.noLoading);
-  //Creamos una constante con los datos de local storage
+  
+
+  const loadPodcastProfile = useCallback(async () => {
+    //Creamos una constante con los datos de local storage
   const getlocalStorage = JSON.parse(
     localStorage.getItem(`podcastProfileStorage${id}`)
   );
-
-  const loadPodcastProfile = async () => {
     if (storageOutDated(getlocalStorage)) {
       isLoading();
       try {
@@ -41,9 +42,9 @@ export function useLoadPodcastProfile(id) {
       setPodcastProfile(getlocalStorage);
       noLoading();
     }
-  };
+  },[id, isLoading, noLoading]);
   useEffect(() => {
     loadPodcastProfile();
-  }, []);
+  }, [loadPodcastProfile]);
   return [podcastProfile, setPodcastProfile];
 }

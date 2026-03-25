@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 //Importamos moment para formatear la fecha a dia, mes y año
 import moment from 'moment';
 //Importamos función para formatear la duración
@@ -12,7 +12,7 @@ export function useLoadPodcastEpisodes(id) {
   const isLoading = useStore((state) => state.isLoading);
   const noLoading = useStore((state) => state.noLoading);
 
-  const loadPodcastEpisodes = async () => {
+  const loadPodcastEpisodes = useCallback(async () => {
     isLoading();
     try {
       const res = await fetch(
@@ -41,10 +41,10 @@ export function useLoadPodcastEpisodes(id) {
       console.error('Err:', e);
       noLoading();
     }
-  };
+  }, [id, isLoading, noLoading]);
 
   useEffect(() => {
     loadPodcastEpisodes();
-  }, []);
+  }, [loadPodcastEpisodes]);
   return [podcastEpisodes, setPodcastEpisodes];
 }
